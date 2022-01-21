@@ -1,13 +1,10 @@
-module github.com/gotenberg/gotenberg-template-repository
-
-// TODO: change module name.
+module github.com/Vrex123/gotenberg-ghostscript
 
 go 1.17
 
 require (
 	github.com/gotenberg/gotenberg/v7 v7.4.2
-	github.com/spf13/pflag v1.0.5
-	go.uber.org/multierr v1.7.0
+	go.uber.org/zap v1.20.0
 )
 
 require (
@@ -51,12 +48,13 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
-	go.uber.org/zap v1.20.0 // indirect
+	go.uber.org/multierr v1.7.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410 // indirect
 	golang.org/x/net v0.0.0-20210913180222-943fd674d43e // indirect

@@ -1,61 +1,32 @@
-> Use this GitHub template repository for your custom modules and Gotenberg's Docker image variants.
-> 
-> Want to share your work? Open a PR to the [awesome list](https://github.com/gotenberg/awesome-gotenberg)! 🚀
+This repository provides Ghostscript module for awesome Gotenberg
+
+With power of Ghostscript Gotenberg can convert PDFs to PDF/A-1b, PDF/A-2b, PDF/A-3b without messing up fonts, as unoconv sometimes can when convering to PDF/A-1a.
+
+Support for merging PDFs with Ghostscript added too.
+
+Documentation and examples are available in [original Gotenberg repo](https://github.com/gotenberg/gotenberg)
 
 ## Quick Start
 
-Update the following variables in the `Makefile`:
-
-* `APP_NAME` - the name of your Gotenberg's Docker image variant.
-* `APP_VERSION`
-* `APP_AUTHOR`
-* `APP_REPOSITORY`
-* `DOCKER_REPOSITORY`
-
-Good 🤓? Now run:
-
-```bash
-make it
-```
-
-This command builds both your Gotenberg's Docker image variant (`$(DOCKER_REPOSITORY)/gotenberg:7-$(APP_NAME)-$(APP_VERSION)`)
-and a tests' Docker image.
-
-## Next steps
-
-1. Update the `go.mod` file with your Go module's name.
-2. Update the `build/Dockerfile` with your instructions.
-3. Create your module(s) in `pkg/modules`.
-4. Import your module(s) in `cmd/app/main.go`.
-
-## FAQ
-
-> How can I run my tests?
-
-```bash
-make tests
-```
-
-Once the testing container is ready, you have access to the following commands:
+Open a terminal and run the following command:
 
 ```
-golint   Run the linter
-gotest   Run the tests
-gotodos  Display TODOs in your Go source
+docker run --rm -p 3000:3000 vrex141/gotenberg:7.4.2-ghostscript-v1.0.0
 ```
+## Versions
+- [Gotenberg](https://github.com/gotenberg/gotenberg): 7.4.2
+- [Ghostscript](https://www.ghostscript.com/): 9.55.0
 
----
+## Credits
+Thanks to [@gulien](https://github.com/gulien) for awesome [Gotenberg](https://github.com/gotenberg/gotenberg) 
 
-> How can I check the underlying Gotenberg's version?
+[Ghostscript](https://www.ghostscript.com/) is owned by [Artifex Software, Inc](https://artifex.com/)
 
-The Gotenberg's image has a `version` label which contains the underlying Gotenberg's version:
+Ghostscript is distributed for open source projects under AGPL([more](https://www.ghostscript.com/licensing/index.html#open-source)). 
 
-```
-docker inspect $(DOCKER_REPOSITORY)/gotenberg:7-$(APP_NAME)-$(APP_VERSION)
-```
+This repository is using compiled binary from Ghostscript website.
+Ghostscript binary located inside Docker container and download occurs during build. Gotenberb module interacts with it using CLI.
 
----
+Gotenberg can be built and started without ghostscript module. 
 
-> Where can I see the list of `Makefile` commands?
-
-Run `make help` to display the available commands 💡
+Consider contacting [Artifex](https://artifex.com/), if you want to use it your own project.

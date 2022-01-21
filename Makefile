@@ -6,12 +6,13 @@ help: ## Show the help
 it: build build-tests ## Initialize the development environment
 
 GOLANG_VERSION=1.17
-APP_NAME=app
-APP_VERSION=snapshot
-APP_AUTHOR=app-author
-APP_REPOSITORY=https://my.app.git
-DOCKER_REPOSITORY=app
+APP_NAME=ghostscript
+APP_VERSION=v1.0.0
+APP_AUTHOR=Vrex141
+APP_REPOSITORY=https://github.com/Vrex123/gotenberg-ghostscript
+DOCKER_REPOSITORY=vrex141
 GOLANGCI_LINT_VERSION=v1.42.0 # See https://github.com/golangci/golangci-lint/releases.
+GHOSTSCRIPT_VERSION=9.55.0-linux-x86_64 # See https://github.com/ArtifexSoftware/ghostpdl-downloads/releases
 
 .PHONY: build
 build: ## Build the Gotenberg's Docker image
@@ -21,7 +22,8 @@ build: ## Build the Gotenberg's Docker image
 	--build-arg APP_VERSION=$(APP_VERSION) \
 	--build-arg APP_AUTHOR=$(APP_AUTHOR) \
 	--build-arg APP_REPOSITORY=$(APP_REPOSITORY) \
-	-t $(DOCKER_REPOSITORY)/gotenberg:7-$(APP_NAME)-$(APP_VERSION) \
+	--build-arg GHOSTSCRIPT_VERSION=$(GHOSTSCRIPT_VERSION) \
+	-t $(DOCKER_REPOSITORY)/gotenberg:7.4.2-$(APP_NAME)-$(APP_VERSION) \
 	-f build/Dockerfile .
 
 .PHONY: build-tests

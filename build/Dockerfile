@@ -21,9 +21,9 @@ COPY pkg ./pkg
 ARG APP_NAME
 ARG APP_VERSION
 
-RUN go build -o gotenberg -ldflags "-X 'github.com/gotenberg/gotenberg/v7/cmd.Version=7-$APP_NAME-$APP_VERSION'" cmd/app/main.go
+RUN go build -o gotenberg -ldflags "-X 'github.com/gotenberg/gotenberg/v7/cmd.Version=7.4.2-$APP_NAME-$APP_VERSION'" cmd/app/main.go
 
-FROM gotenberg/gotenberg:7
+FROM gotenberg/gotenberg:7.4.2
 
 ARG APP_AUTHOR
 ARG APP_REPOSITORY
@@ -37,9 +37,17 @@ LABEL variant.author="$APP_AUTHOR" \
 
 USER root
 
-# TODO: add your instructions.
+ARG GHOSTSCRIPT_VERSION
+
+RUN \
+  wget "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-$GHOSTSCRIPT_VERSION.tgz"  &&\
+  tar -zxvf ghostscript-$GHOSTSCRIPT_VERSION.tgz &&\
+  cp ghostscript-$GHOSTSCRIPT_VERSION/gs* /usr/bin/ghostscript &&\
+  chmod a+x /usr/bin/ghostscript
 
 # Copy the Gotenberg binary from the builder stage.
 COPY --from=builder /home/gotenberg /usr/bin/
+
+ENV GHOSTSCRIPT_BIN_PATH /usr/bin/ghostscript
 
 USER gotenberg
